@@ -1,0 +1,27 @@
+import json
+
+def search_word(word):
+    with open('dictionary.json', 'r', encoding='utf-8') as file:
+        dictionary = json.load(file)
+    
+    if word in dictionary:
+        translation = dictionary[word]
+        return translation
+    else:
+        return None
+
+print("英汉词典命令行应用程序")
+
+while True:
+    print("\n请输入要查询的英文单词（输入 'q' 退出）：")
+    word = input("单词：")
+    if word == 'q':
+        print("谢谢使用，再见！")
+        break
+
+    translation = search_word(word)
+    
+    if translation:
+        print("中文释义：", translation)
+    else:
+        print("未找到该单词的中文释义。")
